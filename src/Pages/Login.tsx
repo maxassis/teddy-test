@@ -20,6 +20,7 @@ export default function Login() {
         </span>
         <Input
           className="mb-5"
+          placeholder="Digite seu nome:"
           onChange={(e) => setInput(e.target.value)}
           value={input}
         />

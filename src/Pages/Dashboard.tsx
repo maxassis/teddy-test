@@ -3,6 +3,7 @@ import SideBar from "../Components/SideBar";
 import Clients from "../Components/Clients";
 import ClientsSelect from "../Components/ClientsSelect";
 import useClientStore from "../store/clients-store";
+// import ModalDelete from "../Components/ModalDelete";
 
 export default function Dashboard() {
   const { typeClient } = useClientStore();
@@ -12,6 +13,8 @@ export default function Dashboard() {
       <SideBar />
       <Header />
       {typeClient === "clients" ? <Clients /> : <ClientsSelect />}
+
+      {/* <ModalDelete /> */}
     </div>
   );
 }
