@@ -16,7 +16,10 @@ export default function ClientsSelect() {
             </strong>
           </span>
           {selectedCards.length > 0 && (
-            <button onClick={clearSelectedCards} className="ml-2">
+            <button
+              onClick={clearSelectedCards}
+              className="ml-2 cursor-pointer"
+            >
               Limpar todos
             </button>
           )}
