@@ -10,15 +10,8 @@ export default function Dashboard() {
   return (
     <div className="min-h-screen flex flex-col bg-[#F5F5F5] pb-10">
       <SideBar />
-
       <Header />
-
       {typeClient === "clients" ? <Clients /> : <ClientsSelect />}
-
-      {/* 
-      <Clients />
-
-      <ClientsSelect /> */}
     </div>
   );
 }

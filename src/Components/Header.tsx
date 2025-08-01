@@ -2,10 +2,12 @@ import Menu from "../assets/menu.svg";
 import Logo from "../assets/logo.png";
 import useSidebarStore from "../store/ui-store";
 import useClientStore from "../store/clients-store";
+import { useNavigate } from "react-router";
 
 export default function Header() {
   const { openSidebar } = useSidebarStore();
   const { setClient, setSelected, typeClient } = useClientStore();
+  const navigate = useNavigate();
 
   const handleClientClick = () => {
     setClient();
@@ -15,7 +17,10 @@ export default function Header() {
     setSelected();
   };
 
-  const handleLogoutClick = () => {};
+  const handleLogoutClick = () => {
+    localStorage.removeItem("name");
+    navigate("/");
+  };
 
   return (
     <header className="w-full h-[100px] bg-white shadow-teddy px-2.5 md:pl-[50px] md:pr-[120px] flex items-center justify-between ">
@@ -53,7 +58,7 @@ export default function Header() {
         </span>
       </div>
       <span>
-        Olá, <strong>Usuário!</strong>
+        Olá, <strong>{localStorage.getItem("name")}</strong>
       </span>
     </header>
   );
