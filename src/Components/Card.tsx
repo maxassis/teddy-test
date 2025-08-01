@@ -1,8 +1,9 @@
 import Plus from "../assets/plus1.svg";
 import Pen from "../assets/plus2.svg";
 import Trash from "../assets/plus3.svg";
+import Remove from "../assets/remove.svg";
 
-export default function Card() {
+export default function Card({ type }: { type: "client" | "selected" }) {
   return (
     <div className="md:max-w-[285px] w-full h-[140px] rounded-md bg-white pt-2.5 pb-2 px-5 shadow-sm justify-self-center">
       <strong className="text-center block mb-2">Eduardo</strong>
@@ -15,9 +16,17 @@ export default function Card() {
       </span>
 
       <div className="flex justify-between items-center">
-        <img src={Plus} alt="Plus" className="cursor-pointer" />
-        <img src={Pen} alt="Pen" className="cursor-pointer" />
-        <img src={Trash} alt="Trash" className="cursor-pointer" />
+        {type === "client" && (
+          <>
+            <img src={Plus} alt="Plus" className="cursor-pointer" />
+            <img src={Pen} alt="Pen" className="cursor-pointer" />
+            <img src={Trash} alt="Trash" className="cursor-pointer" />
+          </>
+        )}
+
+        {type === "selected" && (
+          <img src={Remove} alt="Remove" className="cursor-pointer ml-auto" />
+        )}
       </div>
     </div>
   );
