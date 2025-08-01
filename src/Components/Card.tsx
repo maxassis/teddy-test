@@ -34,9 +34,7 @@ export default function Card({
   const modalDeleteRef = useRef<any>(null);
   const modalEditRef = useRef<any>(null);
   const queryClient = useQueryClient();
-  const { selectedCards, addCard, removeCard } = useCardSelectionStore();
-
-  console.log(selectedCards);
+  const { addCard, removeCard } = useCardSelectionStore();
 
   function closeModalDelete() {
     modalDeleteRef.current.close();
@@ -186,19 +184,19 @@ export default function Card({
         <Input
           placeholder="Digite o nome"
           className="h-[40px] mb-2.5 placeholder:text-base md:placeholder:base"
-          valueData={nameEdit}
+          value={nameEdit}
           onChange={(e) => setNameEdit(e.target.value)}
         />
         <Input
           placeholder="Digite o salário"
           className="h-[40px] mb-2.5 placeholder:text-base md:placeholder:base"
-          valueData={salaryEdit}
+          value={salaryEdit}
           onChange={(e) => setSalaryEdit(e.target.value)}
         />
         <Input
           placeholder="Digite o valor da empresa"
           className="h-[40px] mb-[15px] placeholder:text-base md:placeholder:base"
-          valueData={companySalaryEdit}
+          value={companySalaryEdit}
           onChange={(e) => setCompanySalaryEdit(e.target.value)}
         />
 
