@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useState, useRef } from "react";
 import PaginationComponent from "../Components/Pagination";
 import Card from "./Card";
@@ -124,7 +125,16 @@ export default function Clients() {
           </span>
           <div className="flex items-center gap-2 text-[18px]">
             <span className="text-sm md:text-[18px]">Clientes por página:</span>
-            <div className="text-sm md:text-[18px]">16</div>
+            <select
+              onChange={(e) => setLimit(Number(e.target.value))}
+              className="text-sm md:text-[18px] border rounded-sm border-teddy-gray"
+            >
+              {Array.from({ length: 100 }, (_, index) => (
+                <option key={index} value={index + 1}>
+                  {index + 1}
+                </option>
+              ))}
+            </select>
           </div>
         </div>
       </div>
@@ -169,19 +179,19 @@ export default function Clients() {
         </div>
 
         <Input
-          className="h-[40px] mb-2.5 placeholder:text-base md:placeholder:base"
+          className="h-[40px] mb-2.5 placeholder:text-sm"
           placeholder="Digite o nome:"
           onChange={(e) => setName(e.target.value)}
           value={name}
         />
         <Input
-          className="h-[40px] mb-2.5 placeholder:text-base md:placeholder:base"
+          className="h-[40px] mb-2.5 placeholder:text-sm"
           placeholder="Digite o salario:"
           onChange={(e) => setSalary(e.target.value)}
           value={salary}
         />
         <Input
-          className="h-[40px] mb-2.5 placeholder:text-base md:placeholder:base"
+          className="h-[40px] mb-2.5 placeholder:text-sm"
           placeholder="Digite o valor da empresa:"
           onChange={(e) => setCompanyValuation(e.target.value)}
           value={companyValuation}
@@ -189,7 +199,7 @@ export default function Clients() {
 
         <Button
           title={"Criar cliente"}
-          className="md:text-sm font-bold h-[40px]"
+          className="md:text-sm font-bold h-[40px] placeholder:text-sm md:placeholder:sm"
           click={createClient}
         />
       </dialog>

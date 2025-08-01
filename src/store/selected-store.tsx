@@ -7,6 +7,7 @@ interface CardSelectionState {
   selectedCards: Client[];
   addCard: (card: Client) => void;
   removeCard: (cardId: number) => void;
+  clearSelectedCards: () => void;
 }
 
 export const useCardSelectionStore = create<CardSelectionState>()(
@@ -35,6 +36,10 @@ export const useCardSelectionStore = create<CardSelectionState>()(
               (card) => card.id !== cardId
             ),
           };
+        }),
+      clearSelectedCards: () =>
+        set({
+          selectedCards: [],
         }),
     }),
     {

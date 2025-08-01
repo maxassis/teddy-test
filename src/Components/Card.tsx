@@ -183,19 +183,19 @@ export default function Card({
 
         <Input
           placeholder="Digite o nome"
-          className="h-[40px] mb-2.5 placeholder:text-base md:placeholder:base"
+          className="h-[40px] mb-2.5 placeholder:text-sm"
           value={nameEdit}
           onChange={(e) => setNameEdit(e.target.value)}
         />
         <Input
           placeholder="Digite o salário"
-          className="h-[40px] mb-2.5 placeholder:text-base md:placeholder:base"
+          className="h-[40px] mb-2.5 placeholder:text-sm"
           value={salaryEdit}
           onChange={(e) => setSalaryEdit(e.target.value)}
         />
         <Input
           placeholder="Digite o valor da empresa"
-          className="h-[40px] mb-[15px] placeholder:text-base md:placeholder:base"
+          className="h-[40px] mb-[15px] placeholder:text-sm"
           value={companySalaryEdit}
           onChange={(e) => setCompanySalaryEdit(e.target.value)}
         />

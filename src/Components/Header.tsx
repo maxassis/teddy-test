@@ -3,11 +3,13 @@ import Logo from "../assets/logo.png";
 import useSidebarStore from "../store/ui-store";
 import useClientStore from "../store/clients-store";
 import { useNavigate } from "react-router";
+import { useCardSelectionStore } from "../store/selected-store";
 
 export default function Header() {
   const { openSidebar } = useSidebarStore();
   const { setClient, setSelected, typeClient } = useClientStore();
   const navigate = useNavigate();
+  const { clearSelectedCards } = useCardSelectionStore();
 
   const handleClientClick = () => {
     setClient();
@@ -19,7 +21,8 @@ export default function Header() {
 
   const handleLogoutClick = () => {
     localStorage.removeItem("name");
-    navigate("/");
+    clearSelectedCards();
+    navigate("/", { replace: true });
   };
 
   return (
