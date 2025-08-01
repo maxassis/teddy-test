@@ -9,8 +9,6 @@ export interface Client {
   name: string;
   salary: number;
   companyValuation: number;
-  createdAt: string; // ou Date, se você for converter
-  updatedAt: string;
 }
 
 export interface ClientsResponse {
@@ -31,8 +29,6 @@ export default function Clients() {
   const [totalPages, setTotalPages] = useState(0);
 
   const handlePageClick = (selectedItem: { selected: number }) => {
-    console.log(selectedItem);
-    // setCurrentPage(selectedItem.selected);
     setPage(selectedItem.selected + 1);
   };
 

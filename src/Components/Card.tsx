@@ -8,6 +8,7 @@ import Button from "./Button";
 import Close from "../assets/fechar.svg";
 import Input from "./Input";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useCardSelectionStore } from "../store/selected-store";
 
 interface CardProps {
   id: number;
@@ -33,6 +34,9 @@ export default function Card({
   const modalDeleteRef = useRef<any>(null);
   const modalEditRef = useRef<any>(null);
   const queryClient = useQueryClient();
+  const { selectedCards, addCard, removeCard } = useCardSelectionStore();
+
+  console.log(selectedCards);
 
   function closeModalDelete() {
     modalDeleteRef.current.close();
@@ -56,6 +60,14 @@ export default function Card({
 
   function fetchDelete() {
     mutateDelete();
+  }
+
+  function selectCard() {
+    addCard({ id, name, salary, companyValuation });
+  }
+
+  function removeCardSelected() {
+    removeCard(id);
   }
 
   const { mutate } = useMutation({
@@ -107,7 +119,12 @@ export default function Card({
       <div className="flex justify-between items-center">
         {type === "client" && (
           <>
-            <img src={Plus} alt="Plus" className="cursor-pointer" />
+            <img
+              src={Plus}
+              alt="Plus"
+              className="cursor-pointer"
+              onClick={selectCard}
+            />
             <img
               src={Pen}
               alt="Pen"
@@ -128,7 +145,7 @@ export default function Card({
             src={Remove}
             alt="Remove"
             className="cursor-pointer ml-auto"
-            onClick={openModalDelete}
+            onClick={removeCardSelected}
           />
         )}
       </div>
