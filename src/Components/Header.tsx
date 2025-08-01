@@ -8,7 +8,12 @@ export default function Header() {
   return (
     <header className="w-full h-[100px] bg-white shadow-teddy pl-[50px] pr-[120px] flex items-center justify-between ">
       <div className="flex items-center gap-[46px]">
-        <img src={Menu} alt="Menu" onClick={() => openSidebar()} />
+        <img
+          src={Menu}
+          alt="Menu"
+          onClick={() => openSidebar()}
+          className="cursor-pointer"
+        />
         <img src={Logo} alt="Logo" />
       </div>
 

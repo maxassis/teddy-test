@@ -12,12 +12,12 @@ export default function Dashboard() {
   };
 
   return (
-    <div className="h-screen flex flex-col bg-[#F5F5F5]">
+    <div className="min-h-screen flex flex-col bg-[#F5F5F5] pb-10">
       <SideBar />
 
       <Header />
 
-      <div className="max-w-[1200px] w-full h-[705px] mx-auto mt-[30px]">
+      <div className="max-w-[1200px] w-full mx-auto mt-[30px] flex-1">
         <div className="flex-1 px-2.5 mb-2.5">
           <div className="flex items-center justify-between">
             <span>
@@ -30,7 +30,7 @@ export default function Dashboard() {
           </div>
         </div>
 
-        <div className="grid grid-cols-4 gap-4 grid-rows-4">
+        <div className="grid sm:grid-cols-1 md:grid-cols-3 xl:grid-cols-4 gap-4 grid-rows-4 px-2.5 items-center">
           <Card />
           <Card />
           <Card />
@@ -49,9 +49,11 @@ export default function Dashboard() {
           <Card />
         </div>
 
-        <button className="w-full h-10 border-[2px] border-teddy-orange mt-5 mb-5 rounded-sm text-sm font-bold text-teddy-orange cursor-pointer">
-          Criar cliente
-        </button>
+        <div className="mx-2.5">
+          <button className="w-full max-w-[1180px] h-10 border-[2px] border-teddy-orange mt-5 mb-5 rounded-sm text-sm font-bold text-teddy-orange cursor-pointer">
+            Criar cliente
+          </button>
+        </div>
 
         <PaginationComponent pageCount={12} onPageChange={handlePageClick} />
       </div>

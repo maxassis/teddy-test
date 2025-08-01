@@ -4,7 +4,7 @@ import Trash from "../assets/plus3.svg";
 
 export default function Card() {
   return (
-    <div className="max-w-[285px] w-full h-[140px] rounded-md bg-white pt-2.5 pb-2 px-5 shadow-sm">
+    <div className="md:max-w-[285px] w-full h-[140px] rounded-md bg-white pt-2.5 pb-2 px-5 shadow-sm justify-self-center">
       <strong className="text-center block mb-2">Eduardo</strong>
 
       <span className="text-center block mb-2 text-sm">

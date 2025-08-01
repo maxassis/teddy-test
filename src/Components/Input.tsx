@@ -9,7 +9,7 @@ export default function Input({ className = "", ...props }: InputProps) {
     <input
       placeholder="Digite o seu nome:"
       className={twMerge(
-        "w-full h-[60px] border-[2px] border-teddy-gray pl-5 placeholder:text-2xl rounded-[4px]",
+        "w-full h-[60px] border-[2px] border-teddy-gray pl-5 placeholder:text-md md:placeholder:text-2xl rounded-[4px]",
         className
       )}
       {...props}
