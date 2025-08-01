@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import Plus from "../assets/plus1.svg";
 import Pen from "../assets/plus2.svg";
 import Trash from "../assets/plus3.svg";
@@ -7,8 +7,10 @@ import Remove from "../assets/remove.svg";
 import Button from "./Button";
 import Close from "../assets/fechar.svg";
 import Input from "./Input";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 interface CardProps {
+  id: number;
   name: string;
   type: "client" | "selected";
   salary: number;
@@ -20,9 +22,17 @@ export default function Card({
   salary,
   companyValuation,
   name,
+  id,
 }: CardProps) {
+  const [nameEdit, setNameEdit] = useState(name);
+  const [salaryEdit, setSalaryEdit] = useState(salary + "");
+  const [companySalaryEdit, setCompanySalaryEdit] = useState(
+    companyValuation + ""
+  );
+
   const modalDeleteRef = useRef<any>(null);
   const modalEditRef = useRef<any>(null);
+  const queryClient = useQueryClient();
 
   function closeModalDelete() {
     modalDeleteRef.current.close();
@@ -39,6 +49,51 @@ export default function Card({
   function openModalEdit() {
     modalEditRef.current.showModal();
   }
+
+  function fetchEdit() {
+    mutate();
+  }
+
+  function fetchDelete() {
+    mutateDelete();
+  }
+
+  const { mutate } = useMutation({
+    mutationFn: () =>
+      fetch(`https://boasorte.teddybackoffice.com.br/users/${id}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: nameEdit,
+          salary: +salaryEdit,
+          companyValuation: +companySalaryEdit,
+        }),
+      }).then((res) => res.json()),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["user", id] });
+      queryClient.invalidateQueries({ queryKey: ["clients"] });
+      modalEditRef.current.close();
+    },
+  });
+
+  const { mutate: mutateDelete } = useMutation({
+    mutationFn: () =>
+      fetch(`https://boasorte.teddybackoffice.com.br/users/${id}`, {
+        method: "DELETE",
+      }).then((res) => {
+        if (!res.ok) throw new Error("Erro ao deletar o cliente");
+        return res.text();
+      }),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["clients"] });
+      modalDeleteRef.current.close();
+    },
+    onError: (error) => {
+      console.error("Erro ao deletar:", error);
+    },
+  });
 
   return (
     <div className="md:max-w-[285px] w-full rounded-md bg-white p-4 shadow-sm justify-self-center">
@@ -90,12 +145,13 @@ export default function Card({
         </div>
 
         <span className="my-[15px] block">
-          Você está prestes a excluir o cliente: <strong>Eduardo</strong>
+          Você está prestes a excluir o cliente: <strong>{name}</strong>
         </span>
 
         <Button
           title={"Excluir cliente"}
           className="md:text-sm font-bold h-[40px]"
+          click={fetchDelete}
         />
       </dialog>
 
@@ -113,19 +169,26 @@ export default function Card({
         <Input
           placeholder="Digite o nome"
           className="h-[40px] mb-2.5 placeholder:text-base md:placeholder:base"
+          valueData={nameEdit}
+          onChange={(e) => setNameEdit(e.target.value)}
         />
         <Input
           placeholder="Digite o salário"
           className="h-[40px] mb-2.5 placeholder:text-base md:placeholder:base"
+          valueData={salaryEdit}
+          onChange={(e) => setSalaryEdit(e.target.value)}
         />
         <Input
           placeholder="Digite o valor da empresa"
           className="h-[40px] mb-[15px] placeholder:text-base md:placeholder:base"
+          valueData={companySalaryEdit}
+          onChange={(e) => setCompanySalaryEdit(e.target.value)}
         />
 
         <Button
           title={"Editar cliente"}
           className="md:text-sm font-bold h-[40px]"
+          click={fetchEdit}
         />
       </dialog>
     </div>

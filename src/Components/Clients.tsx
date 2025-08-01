@@ -71,6 +71,7 @@ export default function Clients() {
       <Grid>
         {data?.clients?.map((client: Client) => (
           <Card
+            id={client.id}
             key={client.id}
             type="client"
             name={client.name}

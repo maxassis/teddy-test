@@ -3,11 +3,13 @@ import { twMerge } from "tailwind-merge";
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   className?: string;
   placeholder?: string;
+  valueData?: string | number;
 }
 
 export default function Input({
   className = "",
-  placeholder,
+  placeholder = "",
+  valueData = "",
   ...props
 }: InputProps) {
   return (
@@ -18,6 +20,7 @@ export default function Input({
         className
       )}
       {...props}
+      value={valueData}
     />
   );
 }
