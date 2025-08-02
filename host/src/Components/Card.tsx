@@ -7,7 +7,6 @@ import Remove from "../assets/remove.svg";
 import Close from "../assets/fechar.svg";
 import { toast } from "sonner";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-// import { useCardSelectionStore } from "../store/selected-store";
 import useCardSelectionStore from "mfe-store/SelectedStore";
 import BtnOrange from "mfe-design-system/ButtonOrange";
 import Input from "mfe-design-system/Input";
