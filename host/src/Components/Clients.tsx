@@ -5,7 +5,7 @@ import Card from "./Card";
 import Grid from "./Grid";
 import Close from "../assets/fechar.svg";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import BtnOrange from "mfe-design-system/ButtonOrange";
+import BtnOrange from "mfe-design-system/components/BtnOrange";
 import Input from "./Input";
 import { toast } from "sonner";
 

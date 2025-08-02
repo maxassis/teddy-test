@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Input from "../Components/Input";
 import { useNavigate } from "react-router-dom";
-import BtnOrange from "mfe-design-system/components/ButtonOrange/BtnOrange";
+import BtnOrange from "mfe-design-system/components/BtnOrange";
 
 export default function Login() {
   const [input, setInput] = useState("");
