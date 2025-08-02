@@ -2,11 +2,12 @@
 import { useEffect, useState, useRef } from "react";
 import PaginationComponent from "../Components/Pagination";
 import Card from "./Card";
-import Grid from "./Grid";
+// import Grid from "./Grid";
 import Close from "../assets/fechar.svg";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import BtnOrange from "mfe-design-system/ButtonOrange";
 import Input from "mfe-design-system/Input";
+import Grid from "mfe-design-system/Grid";
 import { toast } from "sonner";
 
 export interface Client {

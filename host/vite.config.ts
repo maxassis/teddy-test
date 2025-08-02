@@ -15,10 +15,12 @@ export default defineConfig({
       remotes: {
         "mfe-design-system":
           "http://localhost:5001/assets/design-system-entry.js",
+        "mfe-store": "http://localhost:5002/assets/store-entry.js",
       },
       shared: {
         react: "^19.1.0",
         "react-dom": "^19.1.0",
+        zustand: "^5.0.7",
       },
     }),
   ],

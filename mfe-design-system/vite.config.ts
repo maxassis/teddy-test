@@ -12,6 +12,7 @@ export default defineConfig({
       exposes: {
         "./ButtonOrange": "./src/components/BtnOrange.tsx",
         "./Input": "./src/components/Input.tsx",
+        "./Grid": "./src/components/Grid.tsx",
       },
       shared: {
         react: "^19.1.0",

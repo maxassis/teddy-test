@@ -4,9 +4,7 @@ import Plus from "../assets/plus1.svg";
 import Pen from "../assets/plus2.svg";
 import Trash from "../assets/plus3.svg";
 import Remove from "../assets/remove.svg";
-// import Button from "./Button";
 import Close from "../assets/fechar.svg";
-// import Input from "./Input";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useCardSelectionStore } from "../store/selected-store";
 import BtnOrange from "mfe-design-system/ButtonOrange";
@@ -177,8 +175,8 @@ export default function Card({
         ref={modalEditRef}
         className="inset-0 m-auto bg-white w-[95%] md:w-full max-w-[400px] rounded-md p-5"
       >
-        <div className="flex items-center justify-between">
-          <span className="font-bold mb-[15px]">Editar cliente:</span>
+        <div className="flex items-center justify-between mb-[15px]">
+          <span className="font-bold">Editar cliente:</span>
           <span className="cursor-pointer">
             <img src={Close} alt="Close" onClick={closeModalEdit} />
           </span>
@@ -188,21 +186,28 @@ export default function Card({
           placeholder="Digite o nome"
           className="h-[40px] mb-2.5 placeholder:text-sm"
           value={nameEdit}
-          onChange={(e) => setNameEdit(e.target.value)}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+            setNameEdit(e.target.value)
+          }
           variant="modal"
         />
         <Input
           placeholder="Digite o salário"
           className="h-[40px] mb-2.5 placeholder:text-sm"
           value={salaryEdit}
-          onChange={(e) => setSalaryEdit(e.target.value)}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+            setSalaryEdit(e.target.value)
+          }
           variant="modal"
         />
         <Input
           placeholder="Digite o valor da empresa"
           className="h-[40px] mb-[15px] placeholder:text-sm"
           value={companySalaryEdit}
-          onChange={(e) => setCompanySalaryEdit(e.target.value)}
+          // import Button from "./Button";
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+            setCompanySalaryEdit(e.target.value)
+          }
           variant="modal"
         />
 

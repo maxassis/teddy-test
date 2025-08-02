@@ -1,7 +1,8 @@
 import Logo from "../assets/logo.png";
 import useSidebarStore from "../store/ui-store";
 import Left from "../assets/left.svg";
-import useClientStore from "../store/clients-store";
+// import useClientStore from "../store/clients-store";
+import useClientStore from "mfe-store/ClientsStore";
 
 export default function SideBar() {
   const { isOpen, closeSidebar } = useSidebarStore();
