@@ -23,6 +23,11 @@ export default function Input({
   }`;
 
   return (
-    <input placeholder={placeholder} className={inputClasses} {...props} />
+    <input
+      style={{ paddingLeft: "10px" }}
+      placeholder={placeholder}
+      className={inputClasses}
+      {...props}
+    />
   );
 }

@@ -2,7 +2,8 @@ import Header from "../Components/Header";
 import SideBar from "../Components/SideBar";
 import Clients from "../Components/Clients";
 import ClientsSelect from "../Components/ClientsSelect";
-import useClientStore from "../store/clients-store";
+// import useClientStore from "../store/clients-store";
+import useClientStore from "mfe-store/ClientsStore";
 
 export default function Dashboard() {
   const { typeClient } = useClientStore();

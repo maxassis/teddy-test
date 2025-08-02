@@ -1,10 +1,10 @@
 import Menu from "../assets/menu.svg";
 import Logo from "../assets/logo.png";
-import useSidebarStore from "../store/ui-store";
-// import useClientStore from "../store/clients-store";
+import useSidebarStore from "mfe-store/SidebarStore";
 import useClientStore from "mfe-store/ClientsStore";
 import { useNavigate } from "react-router";
-import { useCardSelectionStore } from "../store/selected-store";
+// import { useCardSelectionStore } from "../store/selected-store";
+import useCardSelectionStore from "mfe-store/SelectedStore";
 
 export default function Header() {
   const { openSidebar } = useSidebarStore();

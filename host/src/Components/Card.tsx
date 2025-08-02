@@ -5,8 +5,10 @@ import Pen from "../assets/plus2.svg";
 import Trash from "../assets/plus3.svg";
 import Remove from "../assets/remove.svg";
 import Close from "../assets/fechar.svg";
+import { toast } from "sonner";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { useCardSelectionStore } from "../store/selected-store";
+// import { useCardSelectionStore } from "../store/selected-store";
+import useCardSelectionStore from "mfe-store/SelectedStore";
 import BtnOrange from "mfe-design-system/ButtonOrange";
 import Input from "mfe-design-system/Input";
 
@@ -34,7 +36,7 @@ export default function Card({
   const modalDeleteRef = useRef<any>(null);
   const modalEditRef = useRef<any>(null);
   const queryClient = useQueryClient();
-  const { addCard, removeCard } = useCardSelectionStore();
+  const { addCard, removeCard, selectedCards } = useCardSelectionStore();
 
   function closeModalDelete() {
     modalDeleteRef.current.close();
@@ -61,11 +63,18 @@ export default function Card({
   }
 
   function selectCard() {
+    if (selectedCards.some((card: any) => card.id === id)) {
+      toast.error("Este cliente já foi selecionado.");
+      return;
+    }
     addCard({ id, name, salary, companyValuation });
+
+    toast.success("Cliente selecionado com sucesso!");
   }
 
   function removeCardSelected() {
     removeCard(id);
+    toast.success("Cliente removido com sucesso!");
   }
 
   const { mutate } = useMutation({

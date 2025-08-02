@@ -11,7 +11,7 @@ export default defineConfig({
       filename: "store-entry.js",
       exposes: {
         "./ClientsStore": "./src/store/clients-store.tsx",
-        "./ProductsStore": "./src/store/ui-store.tsx",
+        "./SidebarStore": "./src/store/ui-store.tsx",
         "./SelectedStore": "./src/store/selected-store.tsx",
       },
       shared: {
@@ -23,6 +23,9 @@ export default defineConfig({
         },
         zustand: {
           requiredVersion: "^5.0.7",
+        },
+        sonner: {
+          requiredVersion: "^2.0.7",
         },
       },
     }),

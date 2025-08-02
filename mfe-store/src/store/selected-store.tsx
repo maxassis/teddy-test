@@ -1,5 +1,4 @@
 import { create } from "zustand";
-import { toast } from "sonner";
 import { persist } from "zustand/middleware";
 
 interface Client {
@@ -16,27 +15,16 @@ interface CardSelectionState {
   clearSelectedCards: () => void;
 }
 
-export const useCardSelectionStore = create<CardSelectionState>()(
+const useCardSelectionStore = create<CardSelectionState>()(
   persist(
     (set) => ({
       selectedCards: [],
       addCard: (card) =>
-        set((state) => {
-          if (
-            !state.selectedCards.some(
-              (existingCard) => existingCard.id === card.id
-            )
-          ) {
-            toast.success("Cliente selecionado com sucesso!");
-            return { selectedCards: [...state.selectedCards, card] };
-          } else {
-            toast.error("Este cliente já foi selecionado.");
-          }
-          return state;
-        }),
+        set((state) => ({
+          selectedCards: [...state.selectedCards, card],
+        })),
       removeCard: (cardId) =>
         set((state) => {
-          toast.success("Cliente removido com sucesso!");
           return {
             selectedCards: state.selectedCards.filter(
               (card) => card.id !== cardId
@@ -53,3 +41,5 @@ export const useCardSelectionStore = create<CardSelectionState>()(
     }
   )
 );
+
+export default useCardSelectionStore;

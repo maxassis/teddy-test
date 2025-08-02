@@ -1,7 +1,8 @@
 import Card from "./Card";
 import Grid from "mfe-design-system/Grid";
 // import Grid from "./Grid";
-import { useCardSelectionStore } from "../store/selected-store";
+// import { useCardSelectionStore } from "../store/selected-store";
+import useCardSelectionStore from "mfe-store/SelectedStore";
 
 export default function ClientsSelect() {
   const { selectedCards, clearSelectedCards } = useCardSelectionStore();

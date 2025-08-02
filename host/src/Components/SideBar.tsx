@@ -1,7 +1,6 @@
 import Logo from "../assets/logo.png";
-import useSidebarStore from "../store/ui-store";
+import useSidebarStore from "mfe-store/SidebarStore";
 import Left from "../assets/left.svg";
-// import useClientStore from "../store/clients-store";
 import useClientStore from "mfe-store/ClientsStore";
 
 export default function SideBar() {
@@ -29,8 +28,11 @@ export default function SideBar() {
           <>
             <div className="w-full h-[128px] bg-[#363636] grid place-items-center relative">
               <img src={Logo} alt="Logo" className="h-16" />
-              <div className="h-[42px] w-[42px] rounded-full bg-black absolute bottom-[-21px] right-[-21px] grid place-items-center cursor-pointer">
-                <img src={Left} alt="Left" onClick={() => closeSidebar()} />
+              <div
+                onClick={() => closeSidebar()}
+                className="h-[42px] w-[42px] rounded-full bg-black absolute bottom-[-21px] right-[-21px] grid place-items-center cursor-pointer"
+              >
+                <img src={Left} alt="Left" />
               </div>
             </div>
             <div className="flex-1 pt-[48px] pl-6">
