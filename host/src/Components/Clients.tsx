@@ -6,7 +6,7 @@ import Grid from "./Grid";
 import Close from "../assets/fechar.svg";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import BtnOrange from "mfe-design-system/ButtonOrange";
-import Input from "./Input";
+import Input from "mfe-design-system/Input";
 import { toast } from "sonner";
 
 export interface Client {
@@ -183,21 +183,28 @@ export default function Clients() {
           placeholder="Digite o nome:"
           onChange={(e) => setName(e.target.value)}
           value={name}
+          variant="modal"
         />
         <Input
           className="h-[40px] mb-2.5 placeholder:text-sm"
           placeholder="Digite o salario:"
           onChange={(e) => setSalary(e.target.value)}
           value={salary}
+          variant="modal"
         />
         <Input
           className="h-[40px] mb-2.5 placeholder:text-sm"
           placeholder="Digite o valor da empresa:"
           onChange={(e) => setCompanyValuation(e.target.value)}
           value={companyValuation}
+          variant="modal"
         />
 
-        <BtnOrange title={"Criar cliente"} click={createClient} />
+        <BtnOrange
+          title={"Criar cliente"}
+          click={createClient}
+          variant="modal"
+        />
       </dialog>
     </div>
   );
