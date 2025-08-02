@@ -9,7 +9,7 @@ import Close from "../assets/fechar.svg";
 import Input from "./Input";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useCardSelectionStore } from "../store/selected-store";
-import BtnOrange from "mfe-design-system/ButtonOrange";
+import BtnOrange from "mfe-design-system/components/ButtonOrange/BtnOrange";
 
 interface CardProps {
   id: number;
