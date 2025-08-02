@@ -5,7 +5,7 @@ import Card from "./Card";
 import Grid from "./Grid";
 import Close from "../assets/fechar.svg";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import Button from "./Button";
+import BtnOrange from "mfe-design-system/ButtonOrange";
 import Input from "./Input";
 import { toast } from "sonner";
 
@@ -197,11 +197,7 @@ export default function Clients() {
           value={companyValuation}
         />
 
-        <Button
-          title={"Criar cliente"}
-          className="md:text-sm font-bold h-[40px] placeholder:text-sm md:placeholder:sm"
-          click={createClient}
-        />
+        <BtnOrange title={"Criar cliente"} click={createClient} />
       </dialog>
     </div>
   );

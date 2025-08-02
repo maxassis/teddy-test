@@ -4,11 +4,12 @@ import Plus from "../assets/plus1.svg";
 import Pen from "../assets/plus2.svg";
 import Trash from "../assets/plus3.svg";
 import Remove from "../assets/remove.svg";
-import Button from "./Button";
+// import Button from "./Button";
 import Close from "../assets/fechar.svg";
 import Input from "./Input";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useCardSelectionStore } from "../store/selected-store";
+import BtnOrange from "mfe-design-system/ButtonOrange";
 
 interface CardProps {
   id: number;
@@ -163,9 +164,10 @@ export default function Card({
           Você está prestes a excluir o cliente: <strong>{name}</strong>
         </span>
 
-        <Button
+        <BtnOrange
           title={"Excluir cliente"}
           className="md:text-sm font-bold h-[40px]"
+          variant="modal"
           click={fetchDelete}
         />
       </dialog>
@@ -200,9 +202,10 @@ export default function Card({
           onChange={(e) => setCompanySalaryEdit(e.target.value)}
         />
 
-        <Button
+        <BtnOrange
           title={"Editar cliente"}
           className="md:text-sm font-bold h-[40px]"
+          variant="modal"
           click={fetchEdit}
         />
       </dialog>

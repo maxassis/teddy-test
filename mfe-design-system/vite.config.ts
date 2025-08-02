@@ -10,7 +10,7 @@ export default defineConfig({
       name: "mfe-design-system",
       filename: "design-system-entry.js",
       exposes: {
-        "./ButtonOrage": "./src/components/ButtonOrange/BtnOrange.tsx",
+        "./ButtonOrange": "./src/components/ButtonOrange/BtnOrange.tsx",
       },
       shared: {
         react: "^19.1.0",
