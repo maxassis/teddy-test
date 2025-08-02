@@ -10,7 +10,8 @@ export default defineConfig({
       name: "mfe-design-system",
       filename: "design-system-entry.js",
       exposes: {
-        "./components/BtnOrange": "./src/components/BtnOrange.tsx",
+        "./ButtonOrange": "./src/components/BtnOrange.tsx",
+        "./Input": "./src/components/Input.tsx",
       },
       shared: {
         react: "^19.1.0",
