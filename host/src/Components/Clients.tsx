@@ -6,7 +6,6 @@ import Close from "../assets/fechar.svg";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import BtnOrange from "mfe-design-system/ButtonOrange";
 import Input from "mfe-design-system/Input";
-import Grid from "mfe-design-system/Grid";
 import { toast } from "sonner";
 
 export interface Client {
@@ -139,7 +138,7 @@ export default function Clients() {
         </div>
       </div>
 
-      <Grid>
+      <div className="grid sm:grid-cols-1 md:grid-cols-3 xl:grid-cols-4 gap-4 px-2.5 items-center">
         {data?.clients?.map((client: Client) => (
           <Card
             id={client.id}
@@ -150,7 +149,7 @@ export default function Clients() {
             companyValuation={client.companyValuation}
           />
         ))}
-      </Grid>
+      </div>
 
       <div className="mx-2.5">
         <button
