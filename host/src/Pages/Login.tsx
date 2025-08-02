@@ -1,7 +1,7 @@
 import { useState } from "react";
-import Button from "../Components/Button";
 import Input from "../Components/Input";
 import { useNavigate } from "react-router-dom";
+import BtnOrange from "mfe-design-system/ButtonOrage";
 
 export default function Login() {
   const [input, setInput] = useState("");
@@ -24,7 +24,7 @@ export default function Login() {
           onChange={(e) => setInput(e.target.value)}
           value={input}
         />
-        <Button title="Enviar" click={handleLogin} />
+        <BtnOrange title="Entrar" click={handleLogin} />
       </div>
     </div>
   );
