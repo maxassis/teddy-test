@@ -6,10 +6,11 @@ import Trash from "../assets/plus3.svg";
 import Remove from "../assets/remove.svg";
 // import Button from "./Button";
 import Close from "../assets/fechar.svg";
-import Input from "./Input";
+// import Input from "./Input";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useCardSelectionStore } from "../store/selected-store";
 import BtnOrange from "mfe-design-system/ButtonOrange";
+import Input from "mfe-design-system/Input";
 
 interface CardProps {
   id: number;
@@ -188,18 +189,21 @@ export default function Card({
           className="h-[40px] mb-2.5 placeholder:text-sm"
           value={nameEdit}
           onChange={(e) => setNameEdit(e.target.value)}
+          variant="modal"
         />
         <Input
           placeholder="Digite o salário"
           className="h-[40px] mb-2.5 placeholder:text-sm"
           value={salaryEdit}
           onChange={(e) => setSalaryEdit(e.target.value)}
+          variant="modal"
         />
         <Input
           placeholder="Digite o valor da empresa"
           className="h-[40px] mb-[15px] placeholder:text-sm"
           value={companySalaryEdit}
           onChange={(e) => setCompanySalaryEdit(e.target.value)}
+          variant="modal"
         />
 
         <BtnOrange
