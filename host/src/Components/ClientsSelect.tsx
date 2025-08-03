@@ -1,6 +1,13 @@
 import Card from "./Card";
 import useCardSelectionStore from "mfe-store/SelectedStore";
 
+interface Card {
+  id: number;
+  name: string;
+  salary: number;
+  companyValuation: number;
+}
+
 export default function ClientsSelect() {
   const { selectedCards, clearSelectedCards } = useCardSelectionStore();
 
@@ -27,7 +34,7 @@ export default function ClientsSelect() {
 
       {selectedCards.length > 0 ? (
         <div className="grid sm:grid-cols-1 md:grid-cols-3 xl:grid-cols-4 gap-4 px-2.5 items-center">
-          {selectedCards.map((card, index) => (
+          {selectedCards.map((card: Card, index: number) => (
             <Card {...card} type="selected" key={index} />
           ))}
         </div>

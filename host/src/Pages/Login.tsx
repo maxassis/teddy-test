@@ -21,7 +21,9 @@ export default function Login() {
         <Input
           className="mb-5"
           placeholder="Digite seu nome:"
-          onChange={(e) => setInput(e.target.value)}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+            setInput(e.target.value)
+          }
           value={input}
         />
         <BtnOrange title="Entrar" click={handleLogin} variant="default" />

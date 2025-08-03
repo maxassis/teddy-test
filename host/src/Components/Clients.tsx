@@ -170,8 +170,8 @@ export default function Clients() {
         ref={modalCreateRef}
         className="inset-0 m-auto bg-white w-[95%] md:w-full max-w-[400px] rounded-md p-5"
       >
-        <div className="flex items-center justify-between">
-          <span className="font-bold mb-[15px]">Criar cliente:</span>
+        <div className="flex items-center justify-between mb-[15px]">
+          <span className="font-bold ">Criar cliente:</span>
           <span className="cursor-pointer">
             <img src={Close} alt="Close" onClick={closeModalCreate} />
           </span>
@@ -180,21 +180,27 @@ export default function Clients() {
         <Input
           className="h-[40px] mb-2.5 placeholder:text-sm"
           placeholder="Digite o nome:"
-          onChange={(e) => setName(e.target.value)}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+            setName(e.target.value)
+          }
           value={name}
           variant="modal"
         />
         <Input
           className="h-[40px] mb-2.5 placeholder:text-sm"
           placeholder="Digite o salario:"
-          onChange={(e) => setSalary(e.target.value)}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+            setSalary(e.target.value)
+          }
           value={salary}
           variant="modal"
         />
         <Input
           className="h-[40px] mb-2.5 placeholder:text-sm"
           placeholder="Digite o valor da empresa:"
-          onChange={(e) => setCompanyValuation(e.target.value)}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+            setCompanyValuation(e.target.value)
+          }
           value={companyValuation}
           variant="modal"
         />
