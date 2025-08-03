@@ -251,8 +251,12 @@ export default function Clients() {
       >
         <div className="flex items-center justify-between mb-[15px]">
           <span className="font-bold ">Criar cliente:</span>
-          <span className="cursor-pointer">
-            <img src={Close} alt="Close" onClick={closeModalCreate} />
+          <span
+            className="cursor-pointer"
+            onClick={closeModalCreate}
+            id="close-modal-create"
+          >
+            <img src={Close} alt="Close" />
           </span>
         </div>
 
