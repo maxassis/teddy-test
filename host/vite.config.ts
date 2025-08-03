@@ -14,8 +14,8 @@ export default defineConfig({
       name: "app-host",
       remotes: {
         "mfe-design-system":
-          "http://localhost:5001/assets/design-system-entry.js",
-        "mfe-store": "http://localhost:5002/assets/store-entry.js",
+          "http://localhost:8081/assets/design-system-entry.js",
+        "mfe-store": "http://localhost:8082/assets/store-entry.js",
       },
       shared: {
         react: "^19.1.0",
