@@ -1,3 +1,4 @@
+import { toast } from "sonner";
 import Card from "./Card";
 import useCardSelectionStore from "mfe-store/SelectedStore";
 
@@ -11,6 +12,11 @@ interface Card {
 export default function ClientsSelect() {
   const { selectedCards, clearSelectedCards } = useCardSelectionStore();
 
+  function handleClearSelectedCards() {
+    clearSelectedCards();
+    toast.success("Todos os clientes foram removidos com sucesso!");
+  }
+
   return (
     <div className="max-w-[1200px] w-full mx-auto mt-[30px] flex-1">
       <div className="flex-1 px-2.5 mb-2.5">
@@ -23,10 +29,10 @@ export default function ClientsSelect() {
           </span>
           {selectedCards.length > 0 && (
             <button
-              onClick={clearSelectedCards}
+              onClick={handleClearSelectedCards}
               className="ml-2 cursor-pointer"
             >
-              Limpar todos
+              <span className="underline">Limpar todos</span>
             </button>
           )}
         </div>

@@ -118,6 +118,18 @@ describe("Dashboard Page", () => {
     cy.get("dialog").should("not.be.visible");
   });
 
+  it("should delete a client and show a success toast", () => {
+    cy.get("header").contains("span", "Clientes").click();
+
+    cy.get('img[alt="Trash"]').first().click();
+
+    cy.get("dialog").contains("button", "Excluir").click();
+
+    cy.wait(500);
+
+    cy.contains("Cliente deletado com sucesso!").should("be.visible");
+  });
+
   it("in the card select edit client and open modal to edit", () => {
     cy.get("header").contains("span", "Clientes").click();
 
@@ -155,5 +167,39 @@ describe("Dashboard Page", () => {
 
     cy.contains("dialog", "Editar cliente:").find('img[alt="Close"]').click();
     cy.get("dialog").should("not.be.visible");
+  });
+
+  it("should select a card and navigate to selected clients page", () => {
+    cy.get("header").contains("span", "Clientes").click();
+
+    cy.get('img[alt="Plus"]').first().click();
+
+    cy.get("header").contains("span", "Clientes selecionados").click();
+
+    cy.contains("Clientes selecionados:").should("be.visible");
+  });
+
+  it("should delete a selected client and show a success toast", () => {
+    cy.get("header").contains("span", "Clientes").click();
+
+    cy.get('img[alt="Plus"]').first().click();
+
+    cy.get("header").contains("span", "Clientes selecionados").click();
+
+    cy.get('img[alt="Remove"]').first().click();
+
+    cy.contains("Cliente removido com sucesso!").should("be.visible");
+  });
+
+  it("should clear all selected clients and show a success toast", () => {
+    cy.get("header").contains("span", "Clientes").click();
+
+    cy.get('img[alt="Plus"]').first().click();
+
+    cy.get("header").contains("span", "Clientes selecionados").click();
+
+    cy.contains("button", "Limpar todos").click();
+
+    cy.contains("Todos os clientes foram removidos com sucesso!").should("be.visible");
   });
 });
