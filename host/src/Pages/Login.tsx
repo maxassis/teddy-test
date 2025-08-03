@@ -2,12 +2,10 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import BtnOrange from "mfe-design-system/ButtonOrange";
 import Input from "mfe-design-system/Input";
-// import useClientStore from "mfe-store/ClientsStore";
 
 export default function Login() {
   const [input, setInput] = useState("");
   const navigate = useNavigate();
-  // const { typeClient } = useClientStore();
 
   function handleLogin() {
     localStorage.setItem("name", input);
@@ -26,7 +24,7 @@ export default function Login() {
           onChange={(e) => setInput(e.target.value)}
           value={input}
         />
-        <BtnOrange title="Entrar" click={handleLogin} />
+        <BtnOrange title="Entrar" click={handleLogin} variant="default" />
       </div>
     </div>
   );
