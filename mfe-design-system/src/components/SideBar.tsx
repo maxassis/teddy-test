@@ -36,6 +36,7 @@ export default function SideBar({
             <div className="w-full h-[128px] bg-[#363636] grid place-items-center relative">
               <img src={Logo} alt="Logo" className="h-16" />
               <div
+                id="close-sidebar"
                 onClick={() => closeSidebar()}
                 className="h-[42px] w-[42px] rounded-full bg-black absolute bottom-[-21px] right-[-21px] grid place-items-center cursor-pointer"
               >

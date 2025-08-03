@@ -248,7 +248,12 @@ export default function Card({
         <div className="flex items-center justify-between">
           <span className="font-bold">Excluir cliente:</span>
           <span className="cursor-pointer">
-            <img src={Close} alt="Close" onClick={closeModalDelete} />
+            <img
+              src={Close}
+              alt="Close"
+              onClick={closeModalDelete}
+              id="close-modal-delete"
+            />
           </span>
         </div>
 
