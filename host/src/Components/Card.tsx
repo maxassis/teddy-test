@@ -32,6 +32,12 @@ export default function Card({
     companyValuation + ""
   );
 
+  const [nameError, setNameError] = useState<string | null>(null);
+  const [salaryError, setSalaryError] = useState<string | null>(null);
+  const [companyValuationError, setCompanyValuationError] = useState<
+    string | null
+  >(null);
+
   const modalDeleteRef = useRef<any>(null);
   const modalEditRef = useRef<any>(null);
   const queryClient = useQueryClient();
@@ -47,15 +53,84 @@ export default function Card({
 
   function closeModalEdit() {
     modalEditRef.current.close();
+    setNameError(null);
+    setSalaryError(null);
+    setCompanyValuationError(null);
   }
 
   function openModalEdit() {
+    setNameEdit(name);
+    setSalaryEdit(salary + "");
+    setCompanySalaryEdit(companyValuation + "");
+    setNameError(null);
+    setSalaryError(null);
+    setCompanyValuationError(null);
     modalEditRef.current.showModal();
   }
 
   function fetchEdit() {
+    let hasError = false;
+
+    if (nameEdit.trim() === "") {
+      setNameError("O nome do cliente é obrigatório.");
+      hasError = true;
+    } else {
+      setNameError(null);
+    }
+
+    if (salaryEdit.trim() === "" || isNaN(Number(salaryEdit))) {
+      setSalaryError("O salário é obrigatório e deve ser um número.");
+      hasError = true;
+    } else {
+      setSalaryError(null);
+    }
+
+    if (companySalaryEdit.trim() === "" || isNaN(Number(companySalaryEdit))) {
+      setCompanyValuationError(
+        "O valor da empresa é obrigatório e deve ser um número."
+      );
+      hasError = true;
+    } else {
+      setCompanyValuationError(null);
+    }
+
+    if (hasError) {
+      return;
+    }
+
     mutate();
   }
+
+  const handleNameEditChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setNameEdit(e.target.value);
+    if (nameError && e.target.value.trim() !== "") {
+      setNameError(null);
+    }
+  };
+
+  const handleSalaryEditChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSalaryEdit(e.target.value);
+    if (
+      salaryError &&
+      e.target.value.trim() !== "" &&
+      !isNaN(Number(e.target.value))
+    ) {
+      setSalaryError(null);
+    }
+  };
+
+  const handleCompanySalaryEditChange = (
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setCompanySalaryEdit(e.target.value);
+    if (
+      companyValuationError &&
+      e.target.value.trim() !== "" &&
+      !isNaN(Number(e.target.value))
+    ) {
+      setCompanyValuationError(null);
+    }
+  };
 
   function fetchDelete() {
     mutateDelete();
@@ -67,7 +142,6 @@ export default function Card({
       return;
     }
     addCard({ id, name, salary, companyValuation });
-
     toast.success("Cliente selecionado com sucesso!");
   }
 
@@ -93,6 +167,13 @@ export default function Card({
       queryClient.invalidateQueries({ queryKey: ["user", id] });
       queryClient.invalidateQueries({ queryKey: ["clients"] });
       modalEditRef.current.close();
+      toast.success("Cliente editado com sucesso!");
+    },
+    onError: (error) => {
+      console.error("Erro ao editar cliente:", error);
+      toast.error("Erro ao editar cliente.", {
+        description: "Tente novamente mais tarde.",
+      });
     },
   });
 
@@ -107,9 +188,13 @@ export default function Card({
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["clients"] });
       modalDeleteRef.current.close();
+      toast.success("Cliente deletado com sucesso!");
     },
     onError: (error) => {
       console.error("Erro ao deletar:", error);
+      toast.error("Erro ao deletar cliente.", {
+        description: "Verifique sua conexão ou tente novamente.",
+      });
     },
   });
 
@@ -192,32 +277,48 @@ export default function Card({
 
         <Input
           placeholder="Digite o nome"
-          className="h-[40px] mb-2.5 placeholder:text-sm"
+          className={`h-[40px] mb-2.5 placeholder:text-sm ${
+            nameError ? "!border-red-500" : ""
+          }`}
           value={nameEdit}
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-            setNameEdit(e.target.value)
-          }
+          onChange={handleNameEditChange}
           variant="modal"
         />
+        {nameError && (
+          <p className="text-red-500 text-[11px] relative bottom-2.5 -mt-1">
+            {nameError}
+          </p>
+        )}
+
         <Input
           placeholder="Digite o salário"
-          className="h-[40px] mb-2.5 placeholder:text-sm"
+          className={`h-[40px] mb-2.5 placeholder:text-sm ${
+            salaryError ? "!border-red-500" : ""
+          }`}
           value={salaryEdit}
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-            setSalaryEdit(e.target.value)
-          }
+          onChange={handleSalaryEditChange}
           variant="modal"
         />
+        {salaryError && (
+          <p className="text-red-500 text-[11px]  relative bottom-2.5 -mt-1">
+            {salaryError}
+          </p>
+        )}
+
         <Input
           placeholder="Digite o valor da empresa"
-          className="h-[40px] mb-[15px] placeholder:text-sm"
+          className={`h-[40px] mb-[15px] placeholder:text-sm ${
+            companyValuationError ? "!border-red-500" : ""
+          }`}
           value={companySalaryEdit}
-          // import Button from "./Button";
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-            setCompanySalaryEdit(e.target.value)
-          }
+          onChange={handleCompanySalaryEditChange}
           variant="modal"
         />
+        {companyValuationError && (
+          <p className="text-red-500 text-[11px] relative bottom-[14px]">
+            {companyValuationError}
+          </p>
+        )}
 
         <BtnOrange
           title={"Editar cliente"}

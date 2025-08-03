@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useState, useRef } from "react";
-// import PaginationComponent from "../Components/Pagination";
 import PaginationComponent from "mfe-design-system/Pagination";
 import Card from "./Card";
 import Close from "../assets/fechar.svg";
@@ -40,6 +39,13 @@ export default function Clients() {
   const [name, setName] = useState("");
   const [salary, setSalary] = useState("");
   const [companyValuation, setCompanyValuation] = useState("");
+
+  const [nameError, setNameError] = useState<string | null>(null);
+  const [salaryError, setSalaryError] = useState<string | null>(null);
+  const [companyValuationError, setCompanyValuationError] = useState<
+    string | null
+  >(null);
+
   const queryClient = useQueryClient();
   const modalCreateRef = useRef<any>(null);
 
@@ -96,6 +102,35 @@ export default function Clients() {
   }, [isSuccess, data]);
 
   function createClient() {
+    let hasError = false;
+
+    if (name.trim() === "") {
+      setNameError("O nome do cliente é obrigatório.");
+      hasError = true;
+    } else {
+      setNameError(null);
+    }
+
+    if (salary.trim() === "" || isNaN(Number(salary))) {
+      setSalaryError("O salário é obrigatório e deve ser um número.");
+      hasError = true;
+    } else {
+      setSalaryError(null);
+    }
+
+    if (companyValuation.trim() === "" || isNaN(Number(companyValuation))) {
+      setCompanyValuationError(
+        "O valor da empresa é obrigatório e deve ser um número."
+      );
+      hasError = true;
+    } else {
+      setCompanyValuationError(null);
+    }
+
+    if (hasError) {
+      return;
+    }
+
     const newClientData: CreateClientData = {
       name: name,
       salary: Number(salary),
@@ -106,12 +141,55 @@ export default function Clients() {
   }
 
   function openModalCreate() {
+    setName("");
+    setSalary("");
+    setCompanyValuation("");
+    setNameError(null);
+    setSalaryError(null);
+    setCompanyValuationError(null);
     modalCreateRef.current.showModal();
   }
 
   function closeModalCreate() {
+    setName("");
+    setSalary("");
+    setCompanyValuation("");
+    setNameError(null);
+    setSalaryError(null);
+    setCompanyValuationError(null);
     modalCreateRef.current.close();
   }
+
+  const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setName(e.target.value);
+    if (nameError && e.target.value.trim() !== "") {
+      setNameError(null);
+    }
+  };
+
+  const handleSalaryChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSalary(e.target.value);
+    if (
+      salaryError &&
+      e.target.value.trim() !== "" &&
+      !isNaN(Number(e.target.value))
+    ) {
+      setSalaryError(null);
+    }
+  };
+
+  const handleCompanyValuationChange = (
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setCompanyValuation(e.target.value);
+    if (
+      companyValuationError &&
+      e.target.value.trim() !== "" &&
+      !isNaN(Number(e.target.value))
+    ) {
+      setCompanyValuationError(null);
+    }
+  };
 
   return (
     <div className="max-w-[1200px] w-full mx-auto mt-[30px] flex-1">
@@ -127,9 +205,9 @@ export default function Clients() {
             <span className="text-sm md:text-[18px]">Clientes por página:</span>
             <select
               onChange={(e) => setLimit(Number(e.target.value))}
-              className="text-sm md:text-[18px] border rounded-sm border-teddy-gray"
+              className="text-sm md:text-[18px] border rounded-sm border-teddy-gray pl-2 w-[50px]"
             >
-              {Array.from({ length: 100 }, (_, index) => (
+              {Array.from({ length: 99 }, (_, index) => (
                 <option key={index} value={index + 1}>
                   {index + 1}
                 </option>
@@ -179,32 +257,49 @@ export default function Clients() {
         </div>
 
         <Input
-          className="h-[40px] mb-2.5 placeholder:text-sm"
+          className={`h-[40px] mb-2.5 placeholder:text-sm ${
+            nameError ? "!border-red-500" : ""
+          }`}
           placeholder="Digite o nome:"
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-            setName(e.target.value)
-          }
+          onChange={handleNameChange}
           value={name}
           variant="modal"
         />
+        {nameError && (
+          <p className="text-red-500 text-[11px] relative bottom-3.5">
+            {nameError}
+          </p>
+        )}
+
         <Input
-          className="h-[40px] mb-2.5 placeholder:text-sm"
+          className={`h-[40px] mb-2.5 placeholder:text-sm ${
+            salaryError ? "!border-red-500" : ""
+          }`}
           placeholder="Digite o salario:"
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-            setSalary(e.target.value)
-          }
+          onChange={handleSalaryChange}
           value={salary}
           variant="modal"
         />
+        {salaryError && (
+          <p className="text-red-500 text-[11px] relative bottom-3.5">
+            {salaryError}
+          </p>
+        )}
+
         <Input
-          className="h-[40px] mb-2.5 placeholder:text-sm"
+          className={`h-[40px] mb-2.5 placeholder:text-sm ${
+            companyValuationError ? "!border-red-500" : ""
+          }`}
           placeholder="Digite o valor da empresa:"
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-            setCompanyValuation(e.target.value)
-          }
+          onChange={handleCompanyValuationChange}
           value={companyValuation}
           variant="modal"
         />
+        {companyValuationError && (
+          <p className="text-red-500 text-[11px] relative bottom-3.5">
+            {companyValuationError}
+          </p>
+        )}
 
         <BtnOrange
           title={"Criar cliente"}
