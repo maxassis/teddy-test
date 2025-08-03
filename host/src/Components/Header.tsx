@@ -3,7 +3,6 @@ import Logo from "../assets/logo.png";
 import useSidebarStore from "mfe-store/SidebarStore";
 import useClientStore from "mfe-store/ClientsStore";
 import { useNavigate } from "react-router";
-// import { useCardSelectionStore } from "../store/selected-store";
 import useCardSelectionStore from "mfe-store/SelectedStore";
 
 export default function Header() {

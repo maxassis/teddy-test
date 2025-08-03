@@ -24,9 +24,6 @@ export default defineConfig({
         zustand: {
           requiredVersion: "^5.0.7",
         },
-        sonner: {
-          requiredVersion: "^2.0.7",
-        },
       },
     }),
   ],

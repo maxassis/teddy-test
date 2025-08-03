@@ -1,8 +1,12 @@
 import Card from "./Card";
-import Grid from "mfe-design-system/Grid";
-// import Grid from "./Grid";
-// import { useCardSelectionStore } from "../store/selected-store";
 import useCardSelectionStore from "mfe-store/SelectedStore";
+
+interface Card {
+  id: number;
+  name: string;
+  salary: number;
+  companyValuation: number;
+}
 
 export default function ClientsSelect() {
   const { selectedCards, clearSelectedCards } = useCardSelectionStore();
@@ -29,11 +33,11 @@ export default function ClientsSelect() {
       </div>
 
       {selectedCards.length > 0 ? (
-        <Grid>
-          {selectedCards.map((card, index) => (
+        <div className="grid sm:grid-cols-1 md:grid-cols-3 xl:grid-cols-4 gap-4 px-2.5 items-center">
+          {selectedCards.map((card: Card, index: number) => (
             <Card {...card} type="selected" key={index} />
           ))}
-        </Grid>
+        </div>
       ) : (
         <p className="text-center text-gray-500 mt-10">
           Não há clientes selecionados.
