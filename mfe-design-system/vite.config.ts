@@ -13,6 +13,7 @@ export default defineConfig({
         "./ButtonOrange": "./src/components/BtnOrange.tsx",
         "./Input": "./src/components/Input.tsx",
         "./SideBar": "./src/components/SideBar.tsx",
+        "./Pagination": "./src/components/Pagination.tsx",
       },
       shared: {
         react: "^19.1.0",

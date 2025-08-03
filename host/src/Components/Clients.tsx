@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useState, useRef } from "react";
-import PaginationComponent from "../Components/Pagination";
+// import PaginationComponent from "../Components/Pagination";
+import PaginationComponent from "mfe-design-system/Pagination";
 import Card from "./Card";
 import Close from "../assets/fechar.svg";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
