@@ -4,23 +4,6 @@ import tailwindcss from "@tailwindcss/vite";
 import svgr from "vite-plugin-svgr";
 import federation from "@originjs/vite-plugin-federation";
 
-const getRemoteUrl = (remoteName: string, devPort: number): string => {
-  if (
-    process.env.NODE_ENV === "development" ||
-    process.env.VITE_APP_ENV === "development"
-  ) {
-    return `http://localhost:${devPort}/assets/${remoteName}-entry.js`;
-  } else {
-    if (remoteName === "design-system") {
-      return "https://yvievpygnysrufdcakbz.supabase.co/storage/v1/object/public/teddy-teste/mfe-design-system/assets/design-system-entry.js";
-    }
-    if (remoteName === "store") {
-      return "https://yvievpygnysrufdcakbz.supabase.co/storage/v1/object/public/teddy-teste/mfe-store/assets/store-entry.js";
-    }
-    return "";
-  }
-};
-
 export default defineConfig({
   plugins: [
     react(),
@@ -29,8 +12,10 @@ export default defineConfig({
     federation({
       name: "app-host",
       remotes: {
-        "mfe-design-system": getRemoteUrl("design-system", 5001),
-        "mfe-store": getRemoteUrl("store", 5002),
+        "mfe-design-system":
+          "https://yvievpygnysrufdcakbz.supabase.co/storage/v1/object/public/teddy-teste/mfe-design-system/assets/design-system-entry.js",
+        "mfe-store":
+          "https://yvievpygnysrufdcakbz.supabase.co/storage/v1/object/public/teddy-teste/mfe-store/assets/store-entry.js",
       },
       shared: {
         react: "^19.1.0",
