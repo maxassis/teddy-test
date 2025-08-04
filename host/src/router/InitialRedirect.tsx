@@ -10,7 +10,7 @@ export default function InitialRedirect() {
     if (name) {
       navigate("/dashboard");
     } else {
-      navigate("/login");
+      navigate("/");
     }
   }, [navigate]);
 

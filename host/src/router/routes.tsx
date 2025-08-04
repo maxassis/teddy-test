@@ -6,7 +6,7 @@ import ProtectedRoute from "./protectedRoutes";
 
 export const router = createBrowserRouter([
   {
-    path: "/",
+    path: "/login",
     element: <InitialRedirect />,
   },
   {
@@ -18,7 +18,7 @@ export const router = createBrowserRouter([
     ),
   },
   {
-    path: "/login",
+    path: "/",
     element: <Login />,
   },
 ]);

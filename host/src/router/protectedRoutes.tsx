@@ -8,7 +8,7 @@ export default function ProtectedRoute({ children }: ProtectedRouteProps) {
   const name = localStorage.getItem("name");
 
   if (!name) {
-    return <Navigate to="/login" replace />;
+    return <Navigate to="/" replace />;
   }
 
   return <>{children}</>;
