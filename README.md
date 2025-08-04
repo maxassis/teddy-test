@@ -103,12 +103,14 @@ Para rodar o projeto localmente, você deve iniciar todos os micro frontends. Em
 1. design-system
 ```bash
 cd mfe-design-system
-npm run dev
+npm run build
+npm run preview
 ```
 2. stores
 ```bash
 cd mfe-store
-npm run dev
+npm run build
+npm run preview
 ```
 3. Host (Aplicação Principal)
  ```bash
