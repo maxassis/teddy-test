@@ -4,7 +4,11 @@
 @theme {
   --color-teddy-gray: #d9d9d9;
   --color-teddy-orange: #ec6724;
-  --color-teddy-placeholder: #AAAAAA;
+  --color-teddy-placeholder: #aaaaaa;
   --shadow-teddy: 0 2px 8px rgba(0, 0, 0, 0.75);
   --font-family-sans: Inter, sans-serif;
+}
+
+dialog::backdrop {
+  @apply bg-black opacity-30;
 }
