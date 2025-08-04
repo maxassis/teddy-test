@@ -1,9 +1,7 @@
-import { useState, lazy, Suspense } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
-const BtnOrange = lazy(() => import("mfe-design-system/ButtonOrange"));
-const Input = lazy(() => import("mfe-design-system/Input"));
-const Loading = lazy(() => import("mfe-design-system/Loading"));
+import BtnOrange from "mfe-design-system/ButtonOrange";
+import Input from "mfe-design-system/Input";
 
 export default function Login() {
   const [input, setInput] = useState("");
@@ -29,26 +27,22 @@ export default function Login() {
   };
 
   return (
-    <Suspense fallback={<Loading />}>
-      <div className="flex justify-center items-center h-screen bg-teddy-white">
-        <div className="max-w-[521px] w-full px-2.5 ">
-          <span className="text-center block font-[400] text-2xl md:text-[36px] mb-5 ">
-            Olá, seja bem-vindo!
-          </span>
-          <Input
-            className={`mb-2 ${error ? "!border-red-500" : ""}`}
-            placeholder="Digite seu nome:"
-            onChange={handleInputChange}
-            value={input}
-          />
-          {error && (
-            <p className="text-red-500 text-sm relative bottom-[9px]">
-              {error}
-            </p>
-          )}
-          <BtnOrange title="Entrar" click={handleLogin} variant="default" />
-        </div>
+    <div className="flex justify-center items-center h-screen bg-teddy-white">
+      <div className="max-w-[521px] w-full px-2.5 ">
+        <span className="text-center block font-[400] text-2xl md:text-[36px] mb-5 ">
+          Olá, seja bem-vindo!
+        </span>
+        <Input
+          className={`mb-2 ${error ? "!border-red-500" : ""}`}
+          placeholder="Digite seu nome:"
+          onChange={handleInputChange}
+          value={input}
+        />
+        {error && (
+          <p className="text-red-500 text-sm relative bottom-[9px]">{error}</p>
+        )}
+        <BtnOrange title="Entrar" click={handleLogin} variant="default" />
       </div>
-    </Suspense>
+    </div>
   );
 }

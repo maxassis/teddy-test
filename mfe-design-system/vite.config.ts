@@ -14,7 +14,6 @@ export default defineConfig({
         "./Input": "./src/components/Input.tsx",
         "./SideBar": "./src/components/SideBar.tsx",
         "./Pagination": "./src/components/Pagination.tsx",
-        "./Loading": "./src/components/Loading.tsx",
       },
       shared: {
         react: "^19.1.0",

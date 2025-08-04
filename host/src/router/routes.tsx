@@ -2,7 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import Login from "../Pages/Login";
 import Dashboard from "../Pages/Dashboard";
 import InitialRedirect from "./InitialRedirect";
-import ProtectedRoute from "./protectedRoutes";
+// import ProtectedRoute from "./protectedRoutes";
 
 export const router = createBrowserRouter([
   {
@@ -11,11 +11,7 @@ export const router = createBrowserRouter([
   },
   {
     path: "/dashboard",
-    element: (
-      <ProtectedRoute>
-        <Dashboard />
-      </ProtectedRoute>
-    ),
+    element: <Dashboard />,
   },
   {
     path: "/",
