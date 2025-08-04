@@ -204,6 +204,7 @@ export default function Clients() {
           <div className="flex items-center gap-2 text-[18px]">
             <span className="text-sm md:text-[18px]">Clientes por página:</span>
             <select
+              value={limit}
               onChange={(e) => setLimit(Number(e.target.value))}
               className="text-sm md:text-[18px] border rounded-sm border-teddy-gray pl-2 w-[50px]"
             >

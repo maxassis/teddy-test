@@ -46,10 +46,10 @@
   padding-left: 5px;
   border-radius: 4px;
   font-family: inherit;
-}
 
-.input-base::placeholder {
-  color: #a9a9a9;
+  &::placeholder {
+    color: #a9a9a9;
+  }
 }
 
 .input-default {
@@ -59,8 +59,96 @@
 .input-modal {
   height: 40px;
   margin-bottom: 15px;
+
+  &::placeholder {
+    font-size: 0.875rem;
+  }
 }
 
-.input-modal::placeholder {
-  font-size: 0.875rem;
+.sidebar-container {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  width: 260px;
+  background-color: #ffffff;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  z-index: 40;
+  transition: transform 300ms ease-in-out;
+
+  &.closed {
+    transform: translateX(-100%);
+  }
+
+  &.open {
+    transform: translateX(0);
+  }
+
+  .header-area {
+    width: 100%;
+    height: 128px;
+    background-color: #363636;
+    display: grid;
+    place-items: center;
+    position: relative;
+
+    .logo-img {
+      height: 64px;
+    }
+
+    .close-button {
+      height: 42px;
+      width: 42px;
+      border-radius: 9999px;
+      background-color: #000000;
+      position: absolute;
+      bottom: -21px;
+      right: -21px;
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+    }
+  }
+
+  .navigation-section {
+    flex: 1;
+    padding-top: 48px;
+    padding-left: 24px;
+
+    .nav-item {
+      height: 44px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      cursor: pointer;
+      padding-left: 16px;
+      padding-right: 16px;
+      border-top-left-radius: 8px;
+      border-bottom-left-radius: 8px;
+      transition-property: color;
+      transition-duration: 200ms;
+
+      &:hover {
+        color: var(--color-teddy-orange);
+      }
+
+      svg {
+        transition-property: fill;
+        transition-duration: 200ms;
+      }
+
+      &:hover svg {
+        fill: var(--color-teddy-orange);
+      }
+    }
+  }
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background-color: #000000;
+  opacity: 0.3;
+  z-index: 30;
 }

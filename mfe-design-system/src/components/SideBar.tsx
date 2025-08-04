@@ -1,5 +1,6 @@
 import Logo from "../assets/logo.png";
 import Left from "../assets/left.svg";
+import "./style.css";
 
 interface SideBarProps {
   isOpen: boolean;
@@ -27,31 +28,28 @@ export default function SideBar({
   return (
     <>
       <div
-        className={`absolute left-0 top-0 h-screen w-[260px] bg-white shadow-md z-40 transition-all duration-300 ease-in-out ${
-          isOpen ? "translate-x-0" : "-translate-x-full"
-        }`}
+        className={`sidebar-container ${isOpen ? "open" : "closed"}`} // Adiciona/remove a classe 'open' ou 'closed'
       >
         {isOpen && (
           <>
-            <div className="w-full h-[128px] bg-[#363636] grid place-items-center relative">
-              <img src={Logo} alt="Logo" className="h-16" />
+            <div className="header-area">
+              <img src={Logo} alt="Logo" className="logo-img" />
               <div
                 id="close-sidebar"
                 onClick={() => closeSidebar()}
-                className="h-[42px] w-[42px] rounded-full bg-black absolute bottom-[-21px] right-[-21px] grid place-items-center cursor-pointer"
+                className="close-button"
               >
                 <img src={Left} alt="Left" />
               </div>
             </div>
-            <div className="flex-1 pt-[48px] pl-6">
-              <div className="h-[44px] flex items-center gap-3 cursor-pointer px-4 rounded-l-lg hover:text-teddy-orange group transition-colors duration-200">
+            <div className="navigation-section">
+              <div className="nav-item">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="20"
                   height="20"
                   fill="none"
                   viewBox="0 0 20 20"
-                  className="group-hover:fill-teddy-orange transition-colors duration-200"
                 >
                   <path
                     fill="currentColor"
@@ -60,17 +58,13 @@ export default function SideBar({
                 </svg>
                 <span>Home</span>
               </div>
-              <div
-                onClick={() => changeClient()}
-                className="h-[44px] flex items-center gap-3 cursor-pointer px-4 rounded-l-lg hover:text-teddy-orange group transition-colors duration-200"
-              >
+              <div onClick={() => changeClient()} className="nav-item">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="12"
                   height="18"
                   fill="none"
                   viewBox="0 0 12 18"
-                  className="group-hover:fill-teddy-orange transition-colors duration-200"
                 >
                   <path
                     fill="currentColor"
@@ -79,17 +73,13 @@ export default function SideBar({
                 </svg>
                 <span>Clientes</span>
               </div>
-              <div
-                onClick={() => changeSelected()}
-                className="h-[44px] flex items-center gap-3 cursor-pointer px-4 rounded-l-lg hover:text-teddy-orange group transition-colors duration-200"
-              >
+              <div onClick={() => changeSelected()} className="nav-item">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="16"
                   height="18"
                   fill="none"
                   viewBox="0 0 16 18"
-                  className="group-hover:fill-teddy-orange transition-colors duration-200"
                 >
                   <path
                     fill="currentColor"
@@ -102,12 +92,7 @@ export default function SideBar({
           </>
         )}
       </div>
-      {isOpen && (
-        <div
-          className="absolute inset-0 bg-black opacity-[0.3] z-30"
-          onClick={() => closeSidebar()}
-        ></div>
-      )}
+      {isOpen && <div className="overlay" onClick={() => closeSidebar()}></div>}
     </>
   );
 }
