@@ -155,6 +155,7 @@ O projeto já contém os `Dockerfiles` necessários para cada micro frontend (`h
     ```bash
     docker-compose down
     ```
+    **Observação sobre mfe Remotos:** Por padrão, o `host` esta configurado para consumir os micro-frontends a partir dos endereços de produção (Supabase). Se desejar que o `host` consuma os micro-frontends a partir dos serviços Docker locais (localhost), você precisará modificar o arquivo `host/vite.config.ts` e ajustar os `remotes` para apontar para `http://localhost:8081/assets/design-system-entry.js` para `mfe-design-system` e `http://localhost:8082/assets/store-entry.js` para `mfe-store`.
 
 ## 🧪 Executando os Testes
 Os testes de ponta a ponta (E2E) são escritos com [Cypress](https://www.cypress.io/) e estão localizados no diretório `host`.
